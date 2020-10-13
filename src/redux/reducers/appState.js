@@ -12,10 +12,12 @@ const initialState = {
   isFinished: false,
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case STARTGAME:
-      const { startField, correctCellsArray, emptyCell } = fieldCreator(state.inputValue);
+      const { startField, correctCellsArray, emptyCell } = fieldCreator(
+        state.inputValue,
+      );
       return {
         ...state,
         isStarted: true,
@@ -50,7 +52,10 @@ export default function(state = initialState, action) {
         ...state,
         field: modifiedField,
         emptyCell: modifiedField.findIndex(el => !el),
-        cellsToClick: findCellsToClick(modifiedField.findIndex(el => !el), state.inputValue),
+        cellsToClick: findCellsToClick(
+          modifiedField.findIndex(el => !el),
+          state.inputValue,
+        ),
       };
 
     case CHANGEINPUT:
@@ -61,4 +66,4 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
-}
+};
