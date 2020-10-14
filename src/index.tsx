@@ -10,7 +10,7 @@ import App from './App';
 const store = createStore(rootReducer);
 
 const GlobalStyle = createGlobalStyle`
-  ${reboot}
+  ${reboot()}
 
   body {
     background-color: #282c34
