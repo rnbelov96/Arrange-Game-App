@@ -121,24 +121,22 @@ const StartButton = styled.button`
   }
 `;
 
-function Greating({
+const Greating = ({
   dimention, onInputChange, onStart, isFinished,
-}) {
-  return (
-    <Container>
-      <Title>{isFinished ? 'WINNER!!!' : 'Arrange Game'}</Title>
-      <Text>Chose dimention:</Text>
-      <Select value={dimention} onChange={e => onInputChange(e.target.value)}>
-        <option value="three">three</option>
-        <option value="four">four</option>
-        <option value="five">five</option>
-      </Select>
-      <StartButton onClick={onStart} type="button">
+}) => (
+  <Container>
+    <Title>{isFinished ? 'WINNER!!!' : 'Arrange Game'}</Title>
+    <Text>Chose dimention:</Text>
+    <Select value={dimention} onChange={e => onInputChange(e.target.value)}>
+      <option value="three">three</option>
+      <option value="four">four</option>
+      <option value="five">five</option>
+    </Select>
+    <StartButton onClick={onStart} type="button">
         Start
-      </StartButton>
-    </Container>
-  );
-}
+    </StartButton>
+  </Container>
+);
 
 Greating.propTypes = {
   dimention: PropTypes.string.isRequired,
@@ -147,18 +145,14 @@ Greating.propTypes = {
   isFinished: PropTypes.bool.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    dimention: getDimention(state),
-    isFinished: getFinishStatus(state),
-  };
-}
+const mapStateToProps = state => ({
+  dimention: getDimention(state),
+  isFinished: getFinishStatus(state),
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onInputChange: value => dispatch(AppActionCreators.changeInput(value)),
-    onStart: () => dispatch(AppActionCreators.startGame()),
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onInputChange: value => dispatch(AppActionCreators.changeInput(value)),
+  onStart: () => dispatch(AppActionCreators.startGame()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Greating);
