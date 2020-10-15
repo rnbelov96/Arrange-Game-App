@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { moveCell } from '../redux/actions/actions';
 import Greating from './Greating';
+import { AppActionCreators } from '@/reducer/app';
+import {
+  getCellsToClick, getDimention, getField, getFinishStatus, getStartStatus,
+} from '@/reducer/app/selectors';
 
 const Field = styled.div`
   display: flex;
@@ -88,17 +91,17 @@ ArrangeGame.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    field: state.appState.field,
-    cellsToClick: state.appState.cellsToClick,
-    dimention: state.appState.inputValue,
-    isStarted: state.appState.isStarted,
-    isFinished: state.appState.isFinished,
+    field: getField(state),
+    cellsToClick: getCellsToClick(state),
+    dimention: getDimention(state),
+    isStarted: getStartStatus(state),
+    isFinished: getFinishStatus(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onClick: index => dispatch(moveCell(index)),
+    onClick: index => dispatch(AppActionCreators.moveCell(index)),
   };
 }
 

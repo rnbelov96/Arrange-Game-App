@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import reboot from 'styled-reboot';
-import rootReducer from './redux/reducers/rootReducer';
+import rootReducer from './reducer/reducer';
 import App from './App';
 
 const store = createStore(rootReducer);

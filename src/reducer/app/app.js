@@ -1,6 +1,5 @@
-import { MOVECELL, CHANGEINPUT, STARTGAME } from '../actions/actionsTypes';
-import fieldCreator from '../fieldCreator';
-import findCellsToClick from '../findCellsToClick';
+import fieldCreator from '@/utils/field-creator';
+import findCellsToClick from '@/utils/find-cells-to-click';
 
 const initialState = {
   field: [],
@@ -12,9 +11,26 @@ const initialState = {
   isFinished: false,
 };
 
-export default (state = initialState, action) => {
+const ActionTypes = {
+  MOVE_CELL: 'MOVE_CELL',
+  CHANGE_INPUT: 'CHANGE_INPUT',
+  START_GAME: 'START_GAME',
+};
+
+const ActionCreators = {
+  moveCell: data => ({
+    type: ActionTypes.MOVE_CELL,
+    payload: data,
+  }),
+
+  changeInput: data => ({ type: ActionTypes.CHANGE_INPUT, payload: data }),
+
+  startGame: () => ({ type: ActionTypes.START_GAME }),
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case STARTGAME:
+    case ActionTypes.START_GAME:
       const { startField, correctCellsArray, emptyCell } = fieldCreator(
         state.inputValue,
       );
@@ -28,7 +44,7 @@ export default (state = initialState, action) => {
         correctCellsArray,
       };
 
-    case MOVECELL:
+    case ActionTypes.MOVE_CELL:
       const modifiedField = [...state.field];
       if (state.cellsToClick.includes(action.payload)) {
         modifiedField[state.emptyCell] = modifiedField[action.payload];
@@ -58,7 +74,7 @@ export default (state = initialState, action) => {
         ),
       };
 
-    case CHANGEINPUT:
+    case ActionTypes.CHANGE_INPUT:
       return {
         ...state,
         inputValue: action.payload,
@@ -66,4 +82,10 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
+};
+
+export {
+  reducer as appReducer,
+  ActionCreators as AppActionCreators,
+  ActionTypes as DataActionTypes,
 };

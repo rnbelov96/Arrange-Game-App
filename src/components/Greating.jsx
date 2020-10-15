@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { changeInput, startGame } from '../redux/actions/actions';
+import { AppActionCreators } from '@/reducer/app/app';
+import { getDimention, getFinishStatus } from '@/reducer/app/selectors';
 
 const Container = styled.div`
   width: 50vw;
@@ -121,13 +122,13 @@ const StartButton = styled.button`
 `;
 
 function Greating({
-  inputValue, onInputChange, onStart, isFinished,
+  dimention, onInputChange, onStart, isFinished,
 }) {
   return (
     <Container>
       <Title>{isFinished ? 'WINNER!!!' : 'Arrange Game'}</Title>
       <Text>Chose dimention:</Text>
-      <Select value={inputValue} onChange={e => onInputChange(e.target.value)}>
+      <Select value={dimention} onChange={e => onInputChange(e.target.value)}>
         <option value="three">three</option>
         <option value="four">four</option>
         <option value="five">five</option>
@@ -140,7 +141,7 @@ function Greating({
 }
 
 Greating.propTypes = {
-  inputValue: PropTypes.string.isRequired,
+  dimention: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onStart: PropTypes.func.isRequired,
   isFinished: PropTypes.bool.isRequired,
@@ -148,15 +149,15 @@ Greating.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    inputValue: state.appState.inputValue,
-    isFinished: state.appState.isFinished,
+    dimention: getDimention(state),
+    isFinished: getFinishStatus(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onInputChange: value => dispatch(changeInput(value)),
-    onStart: () => dispatch(startGame()),
+    onInputChange: value => dispatch(AppActionCreators.changeInput(value)),
+    onStart: () => dispatch(AppActionCreators.startGame()),
   };
 }
 
