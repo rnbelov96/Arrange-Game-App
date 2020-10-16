@@ -124,7 +124,7 @@ const StartButton = styled.button`
   }
 `;
 
-const GreatingScreen: React.FunctionComponent<GreatingScreenPropsType> = ({
+export const PureGreatingScreen: React.FunctionComponent<GreatingScreenPropsType> = ({
   dimention, onInputChange, onStart, isFinished,
 }: GreatingScreenPropsType) => (
   <Container>
@@ -151,4 +151,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
   onStart: () => dispatch(AppActionCreators.startGame()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GreatingScreen);
+export const GreatingScreen = connect(mapStateToProps, mapDispatchToProps)(PureGreatingScreen);

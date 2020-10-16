@@ -1,7 +1,8 @@
 import React from 'react';
-import GameScreen from 'components/game-screen/game-screen';
-import GreatingScreen from 'components/greating-screen/greating-screen';
+import { GameScreen } from 'components/game-screen';
+import { GreatingScreen } from 'components/greating-screen';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { AppActionCreators } from '@/reducer/app';
 import {
   getCellsToClick, getDimention, getField, getFinishStatus, getStartStatus,
@@ -9,9 +10,8 @@ import {
 import { AppPropsType } from '@/types/components/app';
 import { AppActionType } from '@/types/redux/app-reducer';
 import { FullStateType } from '@/types/general-types';
-import { Dispatch } from 'redux';
 
-const App: React.FunctionComponent<AppPropsType> = ({
+export const PureApp: React.FunctionComponent<AppPropsType> = ({
   isStarted,
   isFinished,
 }: AppPropsType) => (
@@ -35,4 +35,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
   onClick: (index:number) => dispatch(AppActionCreators.moveCell(index)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export const App = connect(mapStateToProps, mapDispatchToProps)(PureApp);

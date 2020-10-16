@@ -45,7 +45,7 @@ const Cell = styled.div`
   }
 `;
 
-const GameScreen: React.FunctionComponent<GameScreenPropsType> = ({
+export const PureGameScreen: React.FunctionComponent<GameScreenPropsType> = ({
   field, cellsToClick, onClick, dimention,
 }: GameScreenPropsType) => {
   const cellsWidth = {
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
   onClick: (index: number) => dispatch(AppActionCreators.moveCell(index)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameScreen);
+export const GameScreen = connect(mapStateToProps, mapDispatchToProps)(PureGameScreen);
