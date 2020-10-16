@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { Dispatch } from 'redux';
 import styled from 'styled-components';
 import { AppActionCreators } from '@/reducer/app/app';
 import { getDimention, getFinishStatus } from '@/reducer/app/selectors';
+import { AppActionType } from '@/types/redux/app-reducer';
+import { DimentionType, FullStateType } from '@/types/general-types';
+import { GreatingScreenPropsType } from '@/types/components/greating-screen';
 
 const Container = styled.div`
   width: 50vw;
@@ -121,13 +124,13 @@ const StartButton = styled.button`
   }
 `;
 
-const Greating = ({
+const GreatingScreen: React.FunctionComponent<GreatingScreenPropsType> = ({
   dimention, onInputChange, onStart, isFinished,
-}) => (
+}: GreatingScreenPropsType) => (
   <Container>
     <Title>{isFinished ? 'WINNER!!!' : 'Arrange Game'}</Title>
     <Text>Chose dimention:</Text>
-    <Select value={dimention} onChange={e => onInputChange(e.target.value)}>
+    <Select value={dimention} onChange={e => onInputChange(e.target.value as DimentionType)}>
       <option value="three">three</option>
       <option value="four">four</option>
       <option value="five">five</option>
@@ -138,21 +141,14 @@ const Greating = ({
   </Container>
 );
 
-Greating.propTypes = {
-  dimention: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onStart: PropTypes.func.isRequired,
-  isFinished: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state: FullStateType) => ({
   dimention: getDimention(state),
   isFinished: getFinishStatus(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onInputChange: value => dispatch(AppActionCreators.changeInput(value)),
+const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
+  onInputChange: (value: DimentionType) => dispatch(AppActionCreators.changeInput(value)),
   onStart: () => dispatch(AppActionCreators.startGame()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Greating);
+export default connect(mapStateToProps, mapDispatchToProps)(GreatingScreen);

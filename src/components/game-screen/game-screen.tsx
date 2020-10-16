@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Dispatch } from 'redux';
 import { getCellsToClick, getDimention, getField } from '@/reducer/app/selectors';
 import { AppActionCreators } from '@/reducer/app';
+import { FullStateType } from '@/types/general-types';
+import { AppActionType } from '@/types/redux/app-reducer';
+import { GameScreenPropsType } from '@/types/components/game-screen';
 
 const Field = styled.div`
   display: flex;
@@ -42,9 +45,9 @@ const Cell = styled.div`
   }
 `;
 
-const GameScreen = ({
+const GameScreen: React.FunctionComponent<GameScreenPropsType> = ({
   field, cellsToClick, onClick, dimention,
-}) => {
+}: GameScreenPropsType) => {
   const cellsWidth = {
     three: '33%',
     four: '25%',
@@ -57,7 +60,7 @@ const GameScreen = ({
           key={`${index + 1}-cell`}
           style={{ width: `${cellsWidth[dimention]}` }}
           onClick={
-            cellsToClick.includes(index) ? () => onClick(index) : null
+            cellsToClick.includes(index) ? () => onClick(index) : () => null
           }
         >
           {el}
@@ -66,22 +69,14 @@ const GameScreen = ({
     </Field>
   );
 };
-
-GameScreen.propTypes = {
-  field: PropTypes.arrayOf(PropTypes.number).isRequired,
-  cellsToClick: PropTypes.arrayOf(PropTypes.number).isRequired,
-  onClick: PropTypes.func.isRequired,
-  dimention: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state: FullStateType) => ({
   field: getField(state),
   cellsToClick: getCellsToClick(state),
   dimention: getDimention(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onClick: index => dispatch(AppActionCreators.moveCell(index)),
+const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
+  onClick: (index: number) => dispatch(AppActionCreators.moveCell(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameScreen);

@@ -1,31 +1,29 @@
 import React from 'react';
 import GameScreen from 'components/game-screen/game-screen';
-import Greating from 'components/greating-screen/greating-screen';
+import GreatingScreen from 'components/greating-screen/greating-screen';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { AppActionCreators } from '@/reducer/app';
 import {
   getCellsToClick, getDimention, getField, getFinishStatus, getStartStatus,
 } from '@/reducer/app/selectors';
+import { AppPropsType } from '@/types/components/app';
+import { AppActionType } from '@/types/redux/app-reducer';
+import { FullStateType } from '@/types/general-types';
+import { Dispatch } from 'redux';
 
-const App = ({
+const App: React.FunctionComponent<AppPropsType> = ({
   isStarted,
   isFinished,
-}) => (
+}: AppPropsType) => (
   <>
-    {!isStarted ? <Greating /> : null}
+    {!isStarted ? <GreatingScreen /> : null}
     {!isFinished && isStarted ? (
       <GameScreen />
     ) : null}
   </>
 );
 
-App.propTypes = {
-  isStarted: PropTypes.bool.isRequired,
-  isFinished: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state: FullStateType) => ({
   field: getField(state),
   cellsToClick: getCellsToClick(state),
   dimention: getDimention(state),
@@ -33,8 +31,8 @@ const mapStateToProps = state => ({
   isFinished: getFinishStatus(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onClick: index => dispatch(AppActionCreators.moveCell(index)),
+const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
+  onClick: (index:number) => dispatch(AppActionCreators.moveCell(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
