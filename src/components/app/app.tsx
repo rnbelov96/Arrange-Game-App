@@ -3,10 +3,10 @@ import { GameScreen } from 'components/game-screen';
 import { GreatingScreen } from 'components/greating-screen';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { AppActionCreators } from '@/reducer/app';
+import { AppActionCreators } from '@/redux/app';
 import {
   getCellsToClick, getDimention, getField, getFinishStatus, getStartStatus,
-} from '@/reducer/app/selectors';
+} from '@/redux/app/selectors';
 import { AppPropsType } from '@/types/components/app';
 import { AppActionType } from '@/types/redux/app-reducer';
 import { FullStateType } from '@/types/general-types';
