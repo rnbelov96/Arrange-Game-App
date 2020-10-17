@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { Dispatch } from 'redux';
 import styled from 'styled-components';
-import { changeInput, startGame } from '../redux/actions/actions';
+import { AppActionCreators } from '@/redux/app/app-reducer';
+import { getDimention, getFinishStatus } from '@/redux/app/selectors';
+import { AppActionType } from '@/types/redux/app-reducer';
+import { DimentionType, FullStateType } from '@/types/general-types';
+import { GreatingScreenPropsType } from '@/types/components/greating-screen';
 
 const Container = styled.div`
   width: 50vw;
@@ -120,44 +124,31 @@ const StartButton = styled.button`
   }
 `;
 
-function Greating({
-  inputValue, onInputChange, onStart, isFinished,
-}) {
-  return (
-    <Container>
-      <Title>{isFinished ? 'WINNER!!!' : 'Arrange Game'}</Title>
-      <Text>Chose dimention:</Text>
-      <Select value={inputValue} onChange={e => onInputChange(e.target.value)}>
-        <option value="three">three</option>
-        <option value="four">four</option>
-        <option value="five">five</option>
-      </Select>
-      <StartButton onClick={onStart} type="button">
+export const PureGreatingScreen: React.FunctionComponent<GreatingScreenPropsType> = ({
+  dimention, onInputChange, onStart, isFinished,
+}: GreatingScreenPropsType) => (
+  <Container>
+    <Title>{isFinished ? 'WINNER!!!' : 'Arrange Game'}</Title>
+    <Text>Chose dimention:</Text>
+    <Select value={dimention} onChange={e => onInputChange(e.target.value as DimentionType)}>
+      <option value="three">three</option>
+      <option value="four">four</option>
+      <option value="five">five</option>
+    </Select>
+    <StartButton onClick={onStart} type="button">
         Start
-      </StartButton>
-    </Container>
-  );
-}
+    </StartButton>
+  </Container>
+);
 
-Greating.propTypes = {
-  inputValue: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onStart: PropTypes.func.isRequired,
-  isFinished: PropTypes.bool.isRequired,
-};
+const mapStateToProps = (state: FullStateType) => ({
+  dimention: getDimention(state),
+  isFinished: getFinishStatus(state),
+});
 
-function mapStateToProps(state) {
-  return {
-    inputValue: state.appState.inputValue,
-    isFinished: state.appState.isFinished,
-  };
-}
+const mapDispatchToProps = (dispatch: Dispatch<AppActionType>) => ({
+  onInputChange: (value: DimentionType) => dispatch(AppActionCreators.changeInput(value)),
+  onStart: () => dispatch(AppActionCreators.startGame()),
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onInputChange: value => dispatch(changeInput(value)),
-    onStart: () => dispatch(startGame()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Greating);
+export const GreatingScreen = connect(mapStateToProps, mapDispatchToProps)(PureGreatingScreen);

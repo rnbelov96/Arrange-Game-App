@@ -1,4 +1,6 @@
-export default (emptyCell, dimention) => {
+import { DimentionType } from '@/types/general-types';
+
+export default (emptyCell: number, dimention: DimentionType) => {
   const breakPoints = {
     four: {
       top: 4,
@@ -20,7 +22,7 @@ export default (emptyCell, dimention) => {
     },
   };
 
-  const cellsToClick = [];
+  const cellsToClick: number[] = [];
   if (emptyCell < breakPoints[dimention].top) {
     cellsToClick.push(emptyCell + breakPoints[dimention].top);
   } else if (emptyCell > breakPoints[dimention].bottom) {
