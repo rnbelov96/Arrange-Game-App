@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render game screen 1`] = `
+<div
+  className="sc-AykKC gEhdZJ"
+>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  />
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    7
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    6
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    8
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    4
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    1
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    3
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    5
+  </div>
+  <div
+    className="sc-AykKD fKtPur"
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "33%",
+      }
+    }
+  >
+    2
+  </div>
+</div>
+`;
+
+exports[`App should render greating screen with greating message 1`] = `
+<div
+  className="sc-AykKE btosjx"
+>
+  <h1
+    className="sc-AykKF ikUiPZ"
+  >
+    Arrange Game
+  </h1>
+  <h2
+    className="sc-AykKG hXQWYg"
+  >
+    Chose dimention:
+  </h2>
+  <select
+    className="sc-AykKH jcCLzn"
+    onChange={[Function]}
+    value="three"
+  >
+    <option
+      value="three"
+    >
+      three
+    </option>
+    <option
+      value="four"
+    >
+      four
+    </option>
+    <option
+      value="five"
+    >
+      five
+    </option>
+  </select>
+  <button
+    className="sc-AykKI klDJOA"
+    onClick={[Function]}
+    type="button"
+  >
+    Start
+  </button>
+</div>
+`;
+
+exports[`App should render greating screen with winning message 1`] = `
+<div
+  className="sc-AykKE btosjx"
+>
+  <h1
+    className="sc-AykKF ikUiPZ"
+  >
+    WINNER!!!
+  </h1>
+  <h2
+    className="sc-AykKG hXQWYg"
+  >
+    Chose dimention:
+  </h2>
+  <select
+    className="sc-AykKH jcCLzn"
+    onChange={[Function]}
+    value="three"
+  >
+    <option
+      value="three"
+    >
+      three
+    </option>
+    <option
+      value="four"
+    >
+      four
+    </option>
+    <option
+      value="five"
+    >
+      five
+    </option>
+  </select>
+  <button
+    className="sc-AykKI klDJOA"
+    onClick={[Function]}
+    type="button"
+  >
+    Start
+  </button>
+</div>
+`;
