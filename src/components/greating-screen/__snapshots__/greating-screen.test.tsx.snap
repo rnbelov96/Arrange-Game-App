@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GreatingScreen should render screen with greating message 1`] = `
+<div
+  className="sc-AykKC jOmOxD"
+>
+  <h1
+    className="sc-AykKD iUedYT"
+  >
+    Arrange Game
+  </h1>
+  <h2
+    className="sc-AykKE hJFghG"
+  >
+    Chose dimention:
+  </h2>
+  <select
+    className="sc-AykKF dlkSEx"
+    onChange={[Function]}
+    value="three"
+  >
+    <option
+      value="three"
+    >
+      three
+    </option>
+    <option
+      value="four"
+    >
+      four
+    </option>
+    <option
+      value="five"
+    >
+      five
+    </option>
+  </select>
+  <button
+    className="sc-AykKG hcNXkq"
+    onClick={[Function]}
+    type="button"
+  >
+    Start
+  </button>
+</div>
+`;
+
+exports[`GreatingScreen should render screen with winning message 1`] = `
+<div
+  className="sc-AykKC jOmOxD"
+>
+  <h1
+    className="sc-AykKD iUedYT"
+  >
+    WINNER!!!
+  </h1>
+  <h2
+    className="sc-AykKE hJFghG"
+  >
+    Chose dimention:
+  </h2>
+  <select
+    className="sc-AykKF dlkSEx"
+    onChange={[Function]}
+    value="three"
+  >
+    <option
+      value="three"
+    >
+      three
+    </option>
+    <option
+      value="four"
+    >
+      four
+    </option>
+    <option
+      value="five"
+    >
+      five
+    </option>
+  </select>
+  <button
+    className="sc-AykKG hcNXkq"
+    onClick={[Function]}
+    type="button"
+  >
+    Start
+  </button>
+</div>
+`;
